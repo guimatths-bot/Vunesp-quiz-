@@ -2,51 +2,72 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Quiz Vunesp">
-<meta name="theme-color" content="#0f172a">
 <title>Quiz Vunesp</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0f172a;color:#f1f5f9;font-family:-apple-system,Roboto,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+body{margin:0;background:#0f172a;color:#f1f5f9;font-family:-apple-system,Roboto,sans-serif}
 #app{max-width:640px;margin:0 auto;padding:16px}
-h1{font-size:22px;margin:8px 0}
-.sub{color:#94a3b8;font-size:14px;margin-bottom:14px}
+h1{font-size:22px}
 .card{background:#1e293b;border-radius:16px;padding:18px;margin-bottom:14px}
 .btn{display:block;width:100%;padding:15px;border:0;border-radius:14px;background:#3b82f6;color:#fff;font-size:16px;font-weight:600;margin-top:10px}
-.btn.sec{background:#273449}
 .btn:disabled{opacity:.4}
-.top{display:flex;justify-content:space-between;font-size:14px;color:#94a3b8;margin-bottom:8px}
-.tag{display:inline-block;font-size:12px;background:#273449;color:#94a3b8;padding:4px 10px;border-radius:99px;margin-bottom:10px}
-.q{font-size:17px;line-height:1.45;margin-bottom:14px}
 .opt{display:block;width:100%;text-align:left;background:#273449;color:#f1f5f9;border:2px solid transparent;border-radius:12px;padding:13px;margin-bottom:9px;font-size:15px;line-height:1.4;font-family:inherit}
-.opt.sel{border-color:#3b82f6}
-.opt.ok{border-color:#22c55e;background:#14532d}
-.opt.bad{border-color:#ef4444;background:#7f1d1d}
-.exp{background:#172554;border-left:4px solid #3b82f6;border-radius:10px;padding:12px;font-size:14px;line-height:1.5;margin-top:6px}
-.res{font-weight:700;margin:6px 0}
-.res.ok{color:#22c55e}.res.bad{color:#ef4444}
-.big{font-size:54px;font-weight:800;text-align:center;margin:10px 0}
+.sel{border-color:#3b82f6}
+.ok{border-color:#22c55e;background:#14532d}
+.bad{border-color:#ef4444;background:#7f1d1d}
+.exp{background:#172554;border-left:4px solid #3b82f6;border-radius:10px;padding:12px;font-size:14px;line-height:1.5;margin-top:8px}
+.tag{font-size:12px;color:#94a3b8;margin-bottom:8px}
+.big{font-size:50px;font-weight:800;text-align:center}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
 var Q=[
-{t:"Concordância",q:"Assinale a alternativa correta quanto à concordância verbal.",o:["Fazem dois anos que ele foi nomeado.","Houveram muitos candidatos na prova.","Existem dúvidas sobre o edital.","Devem haver soluções para o problema.","Haviam muitos processos pendentes."],c:2,e:"FAZER (tempo) e HAVER (existir) são impessoais: ficam no singular. 'Existir' é pessoal e concorda com o sujeito: 'Existem dúvidas'."},
-{t:"Concordância",q:"Assinale a alternativa correta.",o:["Vendem-se imóveis financiados.","Aluga-se casas no centro.","Existe vários motivos para o recurso.","Precisam-se de escreventes.","Fazem dois meses que ele saiu."],c:0,e:"Na voz passiva sintética o verbo concorda com o sujeito: 'Vendem-se imóveis'. Corretos seriam: 'Alugam-se casas', 'Existem vários motivos', 'Precisa-se de escreventes'."},
-{t:"Concordância",q:"Assinale a alternativa em que a concordância nominal está correta.",o:["Seguem anexo as certidões.","É necessário a presença das partes.","Ela mesma assinou o documento.","Os autos estavam meia confusos.","Seguem inclusos o ofício e a certidão."],c:2,e:"'Mesmo' concorda com o termo a que se refere: 'Ela mesma'. 'Anexo' concorda: 'anexas as certidões'. 'Meio' (advérbio) é invariável."},
-{t:"Concordância",q:"Assinale a alternativa correta.",o:["Fui eu que pagou a conta.","Fui eu que paguei a conta.","Fomos nós que paguei a conta.","Foram eles que pagou a conta.","Sou eu quem pagam a conta."],c:1,e:"Com o pronome relativo 'que', o verbo concorda com o antecedente: 'Fui eu que paguei'."},
-{t:"Concordância",q:"Assinale a alternativa correta.",o:["Mais de um candidato foram aprovados.","Cerca de cem pessoas compareceu.","Os Estados Unidos é uma potência.","Não se aplica aos casos omissos as regras antigas.","Um dos servidores que trabalham no fórum foi promovido."],c:4,e:"'Um dos servidores que trabalham': o 'que' retoma 'servidores', então o plural é adequado. As demais: 'foi aprovado', 'compareceram', 'são', 'aplicam-se'."},
-{t:"Regência",q:"Assinale a alternativa com regência correta.",o:["O juiz assistiu o julgamento.","O candidato aspira o cargo.","Os servidores obedecem às normas.","Preferiu mais o descanso do que o trabalho.","Visava o cargo de chefia."],c:2,e:"OBEDECER é transitivo indireto (obedecer A). Corretos seriam: 'assistiu ao julgamento', 'aspira ao cargo', 'preferiu o descanso ao trabalho', 'visava ao cargo'."},
-{t:"Regência",q:"Assinale a alternativa em que 'implicar' está empregado conforme a norma-padrão.",o:["A decisão implicou em prejuízo.","A decisão implicou prejuízo.","A decisão implicou de prejuízo.","A decisão implicou a prejuízo.","A decisão implicou por prejuízo."],c:1,e:"IMPLICAR, no sentido de 'acarretar', é transitivo direto: 'implicou prejuízo'. 'Implicar em' é condenado pela norma-padrão."},
-{t:"Regência",q:"Assinale a alternativa correta quanto à regência.",o:["Prefiro cinema do que teatro.","Prefiro cinema a teatro.","Prefiro mais cinema que teatro.","Prefiro cinema em vez de a teatro.","Prefiro cinema ao invés de teatro."],c:1,e:"PREFERIR pede 'a': 'prefiro X a Y', sem 'mais' nem 'do que'."},
-{t:"Regência",q:"Assinale a alternativa correta.",o:["O réu foi informado da sentença.","O réu foi informado sobre de a sentença.","O réu informou da sentença.","Informei a sentença do réu.","O réu foi informado a sentença."],c:0,e:"INFORMAR admite 'informar alguém DE algo' ou 'informar algo A alguém'. 'O réu foi informado da sentença' é a forma correta."},
-{t:"Regência",q:"Assinale a alternativa em que o verbo 'chegar' está corretamente regido.",o:["Cheguei no fórum cedo.","Cheguei ao fórum cedo.","Cheguei do fórum cedo.","Cheguei de fórum cedo.","Cheguei em fórum cedo."],c:1,e:"CHEGAR pede a preposição 'a' (movimento, destino): 'Cheguei ao fórum'. O uso com 'em' é coloquial."},
-{t:"Crase",q:"Assinale a alternativa em que o emprego do acento grave está correto.",o:["Fomos à pé até o fórum.","Entreguei o documento à Vossa Senhoria.","Refiro-me à decisão proferida ontem.","Ele começou à trabalhar cedo.","Estou disposto à colaborar."],c:2,e:"'Referir-se' pede 'a' e 'decisão' aceita artigo 'a': a + a = à. Não há crase antes de verbo, de pronome de tratamento ou de palavra masculina."},
-{t:"Crase",q:"Assinale a alternativa correta quanto ao uso da crase.",o:["Ele foi à Brasília.","Ele voltou da Bahia e foi à Roma.","Ele foi à Bahia.","Ele chegou à casa do juiz.","Ele chegou à pé."],c:2,e:"Antes de 'Bahia' há artigo ('a Bahia'): 'foi à Bahia'. 'Brasília' e 'Roma' não admitem artigo, então 'foi a Brasília', 'foi a Roma'. 'Chegou a casa' (casa sem adjunto, sem crase)."},
-{t:"Crase",q:"Assinale a alternativa em que a crase é facultativa.",o:["Fui à escola.","Dirigi-me à minha colega.","Vou a Roma.","Estou diante da ré.","Chegou às duas horas."],c:1,e:"Antes de pronome possessivo feminino no singular, a crase é facultativa: 'Dirigi-me à minha colega' ou 'a minha colega'."},
-{t:"Pontuação",q:"Assinale a alternativa em que a vírgula está empregada corretamente.",o:["O juiz, decidiu o caso.","O juiz decidiu, o caso.","O réu, que estava ausente, foi intimado.","O réu que estava ausente, foi intimado.","O réu, foi intimado."],c:2,e:"A oração subordinada adjetiva explicativa ('que estava ausente') vem entre vírgulas. Não se separa sujeito do verbo por vírgula isolada."},
-{t:"Pontuação",q:"Em qual alternativa a vírgula foi empregada de acordo com a norma-padrão?",o:["Os candidatos aprovados, receberão a convocação.","Os candidatos, aprovados receberão a convocação.","Os candidatos aprovados receberão a convocação.","Os candidatos aprovados receberão, a convocação.","Os candidatos, receberão a convocação aprovados."],c:2,e:"Não se separa sujeito de predicado nem verbo de complemento com vírgula. A frase correta não tem vírgulas."},
-{t:"Pontuação",q:"Assinale a alternativa em que a vírgula isola corretamente um aposto.",o:["Machado de Assis, escritor brasileiro, nasceu no Rio.","Machado de Assis escritor brasileiro, nasceu
+{t:"Concordância",q:"Assinale a alternativa correta.",o:["Fazem dois anos que ele foi nomeado.","Houveram muitos candidatos.","Existem dúvidas sobre o edital.","Devem haver soluções.","Haviam muitos processos."],c:2,e:"FAZER (tempo) e HAVER (existir) são impessoais e ficam no singular. EXISTIR é pessoal: 'Existem dúvidas'."},
+{t:"Concordância",q:"Assinale a alternativa correta.",o:["Vendem-se imóveis.","Aluga-se casas.","Existe vários motivos.","Precisam-se de escreventes.","Fazem dois meses."],c:0,e:"Na voz passiva sintética o verbo concorda com o sujeito: 'Vendem-se imóveis'."},
+{t:"Regência",q:"Assinale a alternativa com regência correta.",o:["O juiz assistiu o julgamento.","O candidato aspira o cargo.","Os servidores obedecem às normas.","Preferiu mais o descanso do que o trabalho.","Visava o cargo."],c:2,e:"OBEDECER é transitivo indireto: obedecer A. Corretos seriam: assistiu ao julgamento, aspira ao cargo, visava ao cargo."},
+{t:"Regência",q:"Assinale a alternativa correta.",o:["A decisão implicou em prejuízo.","A decisão implicou prejuízo.","A decisão implicou de prejuízo.","A decisão implicou a prejuízo.","A decisão implicou por prejuízo."],c:1,e:"IMPLICAR (acarretar) é transitivo direto: 'implicou prejuízo'."},
+{t:"Regência",q:"Assinale a alternativa correta.",o:["Prefiro cinema do que teatro.","Prefiro cinema a teatro.","Prefiro mais cinema que teatro.","Prefiro cinema em vez a teatro.","Prefiro cinema ao invés de teatro."],c:1,e:"PREFERIR pede 'a': prefiro X a Y, sem 'mais' nem 'do que'."},
+{t:"Crase",q:"Assinale a alternativa com acento grave correto.",o:["Fomos à pé.","Entreguei à Vossa Senhoria.","Refiro-me à decisão de ontem.","Começou à trabalhar.","Estou disposto à colaborar."],c:2,e:"Referir-se pede 'a' e 'decisão' aceita artigo 'a': a + a = à. Não há crase antes de verbo ou pronome de tratamento."},
+{t:"Pontuação",q:"Assinale a alternativa com a vírgula correta.",o:["O juiz, decidiu o caso.","O réu, que estava ausente, foi intimado.","O réu que estava ausente, foi intimado.","O réu, foi intimado.","O juiz decidiu, o caso."],c:1,e:"A oração adjetiva explicativa vem entre vírgulas. Não se separa sujeito de verbo por vírgula isolada."},
+{t:"Colocação pronominal",q:"Assinale a alternativa correta.",o:["Me disseram a verdade.","Disseram-me a verdade.","Nunca disseram-me nada.","Em se tratando disso, disse-me.","Tudo me disseram-se."],c:1,e:"Não se inicia frase com pronome átono: 'Disseram-me a verdade'. Com palavra de negação, usa-se próclise: 'Nunca me disseram'."}
+];
+var ap=document.getElementById("app"),i=0,pts=0,sel=-1,fim=false;
+function inicio(){
+ ap.innerHTML='<h1>Quiz Vunesp</h1><div class="card">Escrevente TJ-SP<br>'+Q.length+' questões de Língua Portuguesa</div><button class="btn" onclick="comecar()">Começar</button>';
+}
+function comecar(){i=0;pts=0;sel=-1;fim=false;tela();}
+function tela(){
+ var q=Q[i],h='<div class="tag">Questão '+(i+1)+' de '+Q.length+' - '+q.t+'</div><div class="card"><p>'+q.q+'</p>';
+ for(var k=0;k<q.o.length;k++){
+  var cl="opt";
+  if(fim){if(k==q.c)cl+=" ok";else if(k==sel)cl+=" bad";}
+  else if(k==sel)cl+=" sel";
+  h+='<button class="'+cl+'" onclick="esc('+k+')">'+"ABCDE".charAt(k)+") "+q.o[k]+'</button>';
+ }
+ h+='</div>';
+ if(!fim){
+  h+='<button class="btn" '+(sel<0?'disabled':'')+' onclick="enviar()">Enviar resposta</button>';
+ }else{
+  var acertou=(sel==q.c);
+  h+='<div class="card"><b>'+(acertou?"✅ Acertou!":"❌ Errou. Resposta correta: "+"ABCDE".charAt(q.c))+'</b><div class="exp">'+q.e+'</div></div>';
+  h+='<button class="btn" onclick="prox()">'+(i<Q.length-1?"Próxima":"Ver resultado")+'</button>';
+ }
+ ap.innerHTML=h;
+}
+function esc(k){if(fim)return;sel=k;tela();}
+function enviar(){if(sel<0)return;fim=true;if(sel==Q[i].c)pts++;tela();}
+function prox(){
+ if(i<Q.length-1){i++;sel=-1;fim=false;tela();}
+ else{
+  ap.innerHTML='<h1>Resultado</h1><div class="card"><div class="big">'+pts+'/'+Q.length+'</div><p style="text-align:center">'+Math.round(pts/Q.length*100)+'% de acerto</p></div><button class="btn" onclick="comecar()">Refazer</button>';
+ }
+}
+inicio();
+</script>
+</body>
+</html>
