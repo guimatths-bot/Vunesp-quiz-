@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quiz Vunesp">
+<meta name="theme-color" content="#0f172a">
+<title>Quiz Vunesp - Escrevente TJ-SP</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#1e293b; --card2:#273449; --txt:#f1f5f9; --mut:#94a3b8;
+    --pri:#3b82f6; --ok:#22c55e; --err:#ef4444; --warn:#f59e0b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,Roboto,sans-serif;}
+  body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
+  .app{max-width:640px;margin:0 auto;padding:16px;min-height:100%;display:flex;flex-direction:column}
+  h1{font-size:22px;margin:8px 0 4px}
+  h2{font-size:18px;margin:0 0 12px}
+  .sub{color:var(--mut);font-size:14px;margin-bottom:16px}
+  .card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:14px}
+  .btn{display:block;width:100%;padding:15px;border:0;border-radius:14px;background:var(--pri);
+    color:#fff;font-size:16px;font-weight:600;margin-top:10px;cursor:pointer}
+  .btn.sec{background:var(--card2)}
+  .btn:disabled{opacity:.4}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+  .chip{padding:9px 13px;border-radius:999px;background:var(--card2);font-size:14px;border:2px solid transparent;cursor:pointer}
+  .chip.on{border-color:var(--pri);background:#1d3a6b}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mut);margin-bottom:8px}
+  .bar{height:6px;background:var(--card2);border-radius:99px;overflow:hidden;margin-bottom:14px}
+  .bar>div{height:100%;background:var(--pri);transition:width .3s}
+  .tag{display:inline-block;font-size:12px;background:var(--card2);color:var(--mut);padding:4px 10px;border-radius:99px;margin-bottom:10px}
+  .q{font-size:17px;line-height:1.45;margin-bottom:14px;white-space:pre-line}
+  .opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--card2);color:var(--txt);
+    border:2px solid transparent;border-radius:12px;padding:13px;margin-bottom:9px;font-size:15px;line-height:1.4;cursor:pointer}
+  .opt b{min-width:22px}
+  .opt.sel{border-color:var(--pri)}
+  .opt.ok{border-color:var(--ok);background:#14532d}
+  .opt.bad{border-color:var(--err);background:#7f1d1d}
+  .opt.lock{pointer-events:none}
+  .exp{background:#172554;border-left:4px solid var(--pri);border-radius:10px;padding:12px;font-size:14px;line-height:1.5;margin-top:6px}
+  .res{font-weight:700;margin:6px 0}
+  .res.ok{color:var(--ok)} .res.bad{color:var(--err)}
+  .big{font-size:54px;font-weight:800;text-align:center;margin:10px 0}
+  .row{display:flex;gap:10px}.row .btn{margin-top:10px}
+  .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--card2);font-size:15px}
+  .small{font-size:12px;color:var(--mut);text-align:center;margin-top:10px}
+  label.sw{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-size:15px}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+/* ============================================================
+   BANCO DE QUESTÕES
+   Para adicionar mais, copie um bloco e preencha:
+   {t:"Tema", q:"enunciado", o:["A","B","C","D","E"], c:indiceCorreto(0-4), e:"explicação"}
+   ============================================================ */
+const QUESTOES = [
+/* ---------- CONCORDÂNCIA ---------- */
+{t:"Concordância",q:"Assinale a alternativa em que a concordância verbal está de acordo com a norma-padrão.",
+ o:["Fazem dois anos que o escrevente foi nomeado.","Houveram muitos candidatos na prova.","Devem haver soluções para o problema.","Haviam de existir motivos para a decisão.","Faz dois anos que o escrevente foi nomeado."],c:4,
+ e:"Os verbos FAZER (tempo decorrido) e HAVER (existir) são impessoais: ficam na 3ª pessoa do singular. 'Faz dois anos' está correta. Em 'Haviam de existir', o verbo haver não é impessoal (é auxiliar de 'existir'), logo concordaria com 'motivos' — mas a questão pede a mais clara; a única indiscutível é a E."},
+{t:"Concordância",q:"Em qual alternativa a concordância nominal está INCORRETA?",
+ o:["Seguem anexas as certidões solicitadas.","É proibido entrada de pessoas estranhas.","É necessária a presença das partes.","Ela mesma assinou o documento.","Os autos estavam meio confusos."],c:1,
+ e:"'É proibido entrada' está incorreta se 'entrada' vier com artigo ('É proibida a entrada'). Sem determinante, 'é proibido entrada' é aceito. Com o artigo, o adjetivo concorda: proibida. Em prova, atenção ao artigo!"},
+{t:"Concordância",q:"Assinale a alternativa correta quanto à concordância verbal.",
+ o:["Mais de um candidato foram aprovados.","Cerca de cem pessoas compareceu à audiência.","Um dos servidores que trabalham no fórum foi promovido.","Os Estados Unidos é uma grande potência.","Não se aplica aos casos omissos as regras antigas."],c:2,
+ e:"'Um dos servidores que trabalham' admite plural (o 'que' retoma 'servidores'). 'Cerca de cem pessoas compareceram' pede plural. 'Os Estados Unidos' com artigo pede plural: 'são'. 'Não se aplicam' (voz passiva sintética com sujeito 'as regras')."},
+{t:"Concordância",q:"Assinale a alternativa em que o verbo está corretamente flexionado.",
+ o:["Haviam muitos processos pendentes.","Existe vários motivos para o recurso.","Aluga-se casas no centro.","Vendem-se imóveis financiados.","Precisam-se de escreventes."],c:3,
+ e:"Na voz passiva sintética, o verbo concorda com o sujeito: 'Vendem-se imóveis'. 'Aluga-se' → 'Alugam-se casas'. 'Existe' → 'Existem'. 'Haviam' → 'Havia' (impessoal). 'Precisa-se de' (sujeito indeterminado)."},
+{t:"Concordância",q:"Assinale a alternativa em que a concordância está de acordo com a norma-padrão.",
+ o:["Fui eu que paguei a conta.","Fui eu que pagou a conta.","Fomos nós que paguei a conta.","Foram eles que pagou a conta.","Sou eu quem pagam a conta."],c:0,
+ e:"Com pronome relativo 'que', o verbo concorda com o antecedente: 'Fui eu que paguei'. Com 'quem', o verbo fica na 3ª pessoa do singular ou concorda com o antecedente: 'Sou eu quem paga / quem pago'."},
+
+/* ---------- REGÊNCIA ---------- */
+{t:"Regência",q:"Assinale a alternativa em que a regência verbal está de acordo com a norma-padrão.",
+ o:["O juiz assistiu o julgamento.","O candidato aspira o cargo de escrevente.","Os servidores obedecem às normas internas.","Preferiu mais o descanso do que o trabalho.","Visava o cargo de chefia."],c:2,
+ e:"OBEDECER é transitivo indireto (obedecer A). 'Assistir' no sentido de presenciar pede 'a' (assistiu ao julgamento). 'Aspirar' (almejar) pede 'a' (aspira ao cargo). 'Preferir' dispensa 'mais' e 'do que' (prefere X a Y). 'Visar' (ter como objetivo) pede 'a'."},
+{t:"Regência",q:"Assinale a alternativa correta quanto à regência do verbo.",
+ o:["Informei o réu da decisão.","Informei ao réu a decisão.","Informei-lhe da decisão.","Todas as anteriores estão corretas.","Nenhuma das anteriores."],c:3,
+ e:"INFORMAR admite duas construções: informar ALGUÉM (OD) DE ALGO (OI) ou informar ALGO (OD) A ALGUÉM (OI). Todas as opções apresentadas respeitam essa regência."},
+{t:"Regência",q:"Assinale a alternativa em que o emprego do verbo 'implicar' está de acordo com a norma-padrão.",
+ o:["A decisão implicou em prejuízo.","A decisão implicou prejuízo.","A decisão implicou de prejuízo.","A decisão implicou a prejuízo.","A decisão implicou com prejuízo."],c:1,
+ e:"IMPLICAR, no sentido de 'acarretar, resultar', é transitivo direto: 'implicou prejuízo'. O uso de 'implicar em' é condenado pela norma-padrão. Já 'implicar com alguém' significa 'antipatizar
