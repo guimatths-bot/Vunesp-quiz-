@@ -2,81 +2,51 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Quiz Vunesp">
 <meta name="theme-color" content="#0f172a">
-<title>Quiz Vunesp - Escrevente TJ-SP</title>
+<title>Quiz Vunesp</title>
 <style>
-  :root{--bg:#0f172a;--card:#1e293b;--card2:#273449;--txt:#f1f5f9;--mut:#94a3b8;--pri:#3b82f6;--ok:#22c55e;--err:#ef4444}
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--txt);
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Roboto,sans-serif}
-  body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-  .app{max-width:640px;margin:0 auto;padding:16px}
-  h1{font-size:22px;margin:8px 0 4px}
-  h2{font-size:18px;margin:0 0 12px}
-  .sub{color:var(--mut);font-size:14px;margin-bottom:16px}
-  .card{background:var(--card);border-radius:16px;padding:18px;margin-bottom:14px}
-  .btn{display:block;width:100%;padding:15px;border:0;border-radius:14px;background:var(--pri);color:#fff;font-size:16px;font-weight:600;margin-top:10px;cursor:pointer}
-  .btn.sec{background:var(--card2)}
-  .btn:disabled{opacity:.4}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
-  .chip{padding:9px 13px;border-radius:999px;background:var(--card2);font-size:14px;border:2px solid transparent;cursor:pointer;color:var(--txt)}
-  .chip.on{border-color:var(--pri);background:#1d3a6b}
-  .top{display:flex;justify-content:space-between;font-size:14px;color:var(--mut);margin-bottom:8px}
-  .bar{height:6px;background:var(--card2);border-radius:99px;overflow:hidden;margin-bottom:14px}
-  .bar>div{height:100%;background:var(--pri);transition:width .3s}
-  .tag{display:inline-block;font-size:12px;background:var(--card2);color:var(--mut);padding:4px 10px;border-radius:99px;margin-bottom:10px}
-  .q{font-size:17px;line-height:1.45;margin-bottom:14px;white-space:pre-line}
-  .opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--card2);color:var(--txt);border:2px solid transparent;border-radius:12px;padding:13px;margin-bottom:9px;font-size:15px;line-height:1.4;cursor:pointer;font-family:inherit}
-  .opt b{min-width:22px}
-  .opt.sel{border-color:var(--pri)}
-  .opt.ok{border-color:var(--ok);background:#14532d}
-  .opt.bad{border-color:var(--err);background:#7f1d1d}
-  .opt.lock{pointer-events:none}
-  .exp{background:#172554;border-left:4px solid var(--pri);border-radius:10px;padding:12px;font-size:14px;line-height:1.5;margin-top:6px}
-  .res{font-weight:700;margin:6px 0}
-  .res.ok{color:var(--ok)}.res.bad{color:var(--err)}
-  .big{font-size:54px;font-weight:800;text-align:center;margin:10px 0}
-  .stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--card2);font-size:15px}
-  .small{font-size:12px;color:var(--mut);text-align:center;margin-top:10px}
+*{box-sizing:border-box}
+body{margin:0;background:#0f172a;color:#f1f5f9;font-family:-apple-system,Roboto,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+#app{max-width:640px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:8px 0}
+.sub{color:#94a3b8;font-size:14px;margin-bottom:14px}
+.card{background:#1e293b;border-radius:16px;padding:18px;margin-bottom:14px}
+.btn{display:block;width:100%;padding:15px;border:0;border-radius:14px;background:#3b82f6;color:#fff;font-size:16px;font-weight:600;margin-top:10px}
+.btn.sec{background:#273449}
+.btn:disabled{opacity:.4}
+.top{display:flex;justify-content:space-between;font-size:14px;color:#94a3b8;margin-bottom:8px}
+.tag{display:inline-block;font-size:12px;background:#273449;color:#94a3b8;padding:4px 10px;border-radius:99px;margin-bottom:10px}
+.q{font-size:17px;line-height:1.45;margin-bottom:14px}
+.opt{display:block;width:100%;text-align:left;background:#273449;color:#f1f5f9;border:2px solid transparent;border-radius:12px;padding:13px;margin-bottom:9px;font-size:15px;line-height:1.4;font-family:inherit}
+.opt.sel{border-color:#3b82f6}
+.opt.ok{border-color:#22c55e;background:#14532d}
+.opt.bad{border-color:#ef4444;background:#7f1d1d}
+.exp{background:#172554;border-left:4px solid #3b82f6;border-radius:10px;padding:12px;font-size:14px;line-height:1.5;margin-top:6px}
+.res{font-weight:700;margin:6px 0}
+.res.ok{color:#22c55e}.res.bad{color:#ef4444}
+.big{font-size:54px;font-weight:800;text-align:center;margin:10px 0}
 </style>
 </head>
 <body>
-<div class="app" id="app"></div>
-
+<div id="app"></div>
 <script>
-/* BANCO DE QUESTÕES
-   Formato: {t:"Tema", q:"enunciado", o:["A","B","C","D","E"], c:indiceCorreto(0 a 4), e:"explicação"} */
-const QUESTOES = [
-
-/* ---------- CONCORDÂNCIA ---------- */
-{t:"Concordância",q:"Assinale a alternativa em que a concordância verbal está de acordo com a norma-padrão.",
- o:["Fazem dois anos que o escrevente foi nomeado.","Houveram muitos candidatos na prova.","Devem haver soluções para o problema.","Existem dúvidas sobre o edital.","Haviam muitos processos pendentes."],c:3,
- e:"FAZER (tempo decorrido) e HAVER (existir) são impessoais: ficam no singular ('Faz dois anos', 'Havia muitos processos'). 'Devem haver' → 'Deve haver' (o verbo auxiliar acompanha o impessoal). 'Existir' é pessoal e concorda com o sujeito: 'Existem dúvidas'."},
-{t:"Concordância",q:"Assinale a alternativa em que a concordância verbal está correta.",
- o:["Mais de um candidato foram aprovados.","Cerca de cem pessoas compareceu à audiência.","Os Estados Unidos é uma grande potência.","Um dos servidores que trabalham no fórum foi promovido.","Não se aplica aos casos omissos as regras antigas."],c:3,
- e:"'Um dos servidores que trabalham': o 'que' retoma 'servidores', então o plural é adequado. Corrigindo as demais: 'Mais de um candidato foi aprovado'; 'Cerca de cem pessoas compareceram'; 'Os Estados Unidos são'; 'Não se aplicam as regras antigas'."},
-{t:"Concordância",q:"Assinale a alternativa em que o verbo está corretamente flexionado.",
- o:["Aluga-se casas no centro.","Vendem-se imóveis financiados.","Precisam-se de escreventes.","Trata-se de questões complexas e tratam-se de prazos.","Existe vários motivos para o recurso."],c:1,
- e:"Na voz passiva sintética, o verbo concorda com o sujeito: 'Vendem-se imóveis'. Corrigindo: 'Alugam-se casas'; 'Precisa-se de escreventes' (sujeito indeterminado, verbo no singular); 'Existem vários motivos'."},
-{t:"Concordância",q:"Em qual alternativa a concordância nominal está de acordo com a norma-padrão?",
- o:["Seguem anexo as certidões solicitadas.","É necessário a presença das partes.","Ela mesma assinou o documento.","Os autos estavam meia confusos.","Anexas ao ofício, seguem a procuração."],c:2,
- e:"'Mesmo' concorda com o termo a que se refere: 'Ela mesma'. 'Anexo' é adjetivo e concorda: 'Seguem anexas as certidões'. 'Necessário' só concorda se houver artigo: 'É necessária a presença'. 'Meio' (advérbio) é invariável: 'meio confusos'."},
-{t:"Concordância",q:"Assinale a alternativa em que a concordância está de acordo com a norma-padrão.",
- o:["Fui eu que pagou a conta.","Fomos nós que paguei a conta.","Fui eu que paguei a conta.","Foram eles que pagou a conta.","Sou eu quem pagam a conta."],c:2,
- e:"Com o pronome relativo 'que', o verbo concorda com o antecedente: 'Fui eu que paguei'. Com 'quem', o verbo fica na 3ª pessoa do singular: 'Sou eu quem paga' (ou concorda com o antecedente: 'quem pago')."},
-{t:"Concordância",q:"Assinale a alternativa que apresenta concordância verbal correta.",
- o:["A maioria dos servidores compareceram.","Grande parte dos documentos foram extraviados.","Nem o juiz nem o promotor soube explicar o caso.","A maioria dos servidores compareceu.","Haja vista os documentos apresentados, o pedido foi negado."],c:3,
- e:"Com sujeito coletivo partitivo ('a maioria dos servidores'), admitem-se singular ou plural; como as demais têm problemas, a melhor é a D. Em 'Nem o juiz nem o promotor', o verbo vai ao plural se a ação puder ser atribuída a ambos ('souberam'). 'Haja vista' é expressão fixa e aceita 'haja vista os documentos' ou 'haja vista aos documentos'."},
-
-/* ---------- REGÊNCIA ---------- */
-{t:"Regência",q:"Assinale a alternativa em que a regência verbal está de acordo com a norma-padrão.",
- o:["O juiz assistiu o julgamento.","O candidato aspira o cargo de escrevente.","Os servidores obedecem às normas internas.","Preferiu mais o descanso do que o trabalho.","Visava o cargo de chefia."],c:2,
- e:"OBEDECER é transitivo indireto (obedecer A). Corrigindo: 'assistiu ao julgamento'; 'aspira ao cargo'; 'preferiu o descanso ao trabalho' (sem 'mais' e 'do que'); 'visava ao cargo' (no sentido de ter como objetivo)."},
-{t:"Regência",q:"Assinale a alternativa em que o verbo 'implicar' está empregado de acordo com a norma-padrão.",
- o:["A decisão implicou em prejuízo.","A decisão implicou prejuízo.","A decisão implicou de prejuízo.","A decisão implicou a prejuízo.","A decisão implicou por prejuízo."],c:1,
- e:"IMPLICAR, no sentido de 'acarretar', é transitivo direto: 'implicou prejuízo'. O uso de 'implicar em' é condenado pela norma-padrão. (Com o sentido de 'antipatizar', usa-se 'implicar com alguém'.)"},
-{t:"Regência",q:
+var Q=[
+{t:"Concordância",q:"Assinale a alternativa correta quanto à concordância verbal.",o:["Fazem dois anos que ele foi nomeado.","Houveram muitos candidatos na prova.","Existem dúvidas sobre o edital.","Devem haver soluções para o problema.","Haviam muitos processos pendentes."],c:2,e:"FAZER (tempo) e HAVER (existir) são impessoais: ficam no singular. 'Existir' é pessoal e concorda com o sujeito: 'Existem dúvidas'."},
+{t:"Concordância",q:"Assinale a alternativa correta.",o:["Vendem-se imóveis financiados.","Aluga-se casas no centro.","Existe vários motivos para o recurso.","Precisam-se de escreventes.","Fazem dois meses que ele saiu."],c:0,e:"Na voz passiva sintética o verbo concorda com o sujeito: 'Vendem-se imóveis'. Corretos seriam: 'Alugam-se casas', 'Existem vários motivos', 'Precisa-se de escreventes'."},
+{t:"Concordância",q:"Assinale a alternativa em que a concordância nominal está correta.",o:["Seguem anexo as certidões.","É necessário a presença das partes.","Ela mesma assinou o documento.","Os autos estavam meia confusos.","Seguem inclusos o ofício e a certidão."],c:2,e:"'Mesmo' concorda com o termo a que se refere: 'Ela mesma'. 'Anexo' concorda: 'anexas as certidões'. 'Meio' (advérbio) é invariável."},
+{t:"Concordância",q:"Assinale a alternativa correta.",o:["Fui eu que pagou a conta.","Fui eu que paguei a conta.","Fomos nós que paguei a conta.","Foram eles que pagou a conta.","Sou eu quem pagam a conta."],c:1,e:"Com o pronome relativo 'que', o verbo concorda com o antecedente: 'Fui eu que paguei'."},
+{t:"Concordância",q:"Assinale a alternativa correta.",o:["Mais de um candidato foram aprovados.","Cerca de cem pessoas compareceu.","Os Estados Unidos é uma potência.","Não se aplica aos casos omissos as regras antigas.","Um dos servidores que trabalham no fórum foi promovido."],c:4,e:"'Um dos servidores que trabalham': o 'que' retoma 'servidores', então o plural é adequado. As demais: 'foi aprovado', 'compareceram', 'são', 'aplicam-se'."},
+{t:"Regência",q:"Assinale a alternativa com regência correta.",o:["O juiz assistiu o julgamento.","O candidato aspira o cargo.","Os servidores obedecem às normas.","Preferiu mais o descanso do que o trabalho.","Visava o cargo de chefia."],c:2,e:"OBEDECER é transitivo indireto (obedecer A). Corretos seriam: 'assistiu ao julgamento', 'aspira ao cargo', 'preferiu o descanso ao trabalho', 'visava ao cargo'."},
+{t:"Regência",q:"Assinale a alternativa em que 'implicar' está empregado conforme a norma-padrão.",o:["A decisão implicou em prejuízo.","A decisão implicou prejuízo.","A decisão implicou de prejuízo.","A decisão implicou a prejuízo.","A decisão implicou por prejuízo."],c:1,e:"IMPLICAR, no sentido de 'acarretar', é transitivo direto: 'implicou prejuízo'. 'Implicar em' é condenado pela norma-padrão."},
+{t:"Regência",q:"Assinale a alternativa correta quanto à regência.",o:["Prefiro cinema do que teatro.","Prefiro cinema a teatro.","Prefiro mais cinema que teatro.","Prefiro cinema em vez de a teatro.","Prefiro cinema ao invés de teatro."],c:1,e:"PREFERIR pede 'a': 'prefiro X a Y', sem 'mais' nem 'do que'."},
+{t:"Regência",q:"Assinale a alternativa correta.",o:["O réu foi informado da sentença.","O réu foi informado sobre de a sentença.","O réu informou da sentença.","Informei a sentença do réu.","O réu foi informado a sentença."],c:0,e:"INFORMAR admite 'informar alguém DE algo' ou 'informar algo A alguém'. 'O réu foi informado da sentença' é a forma correta."},
+{t:"Regência",q:"Assinale a alternativa em que o verbo 'chegar' está corretamente regido.",o:["Cheguei no fórum cedo.","Cheguei ao fórum cedo.","Cheguei do fórum cedo.","Cheguei de fórum cedo.","Cheguei em fórum cedo."],c:1,e:"CHEGAR pede a preposição 'a' (movimento, destino): 'Cheguei ao fórum'. O uso com 'em' é coloquial."},
+{t:"Crase",q:"Assinale a alternativa em que o emprego do acento grave está correto.",o:["Fomos à pé até o fórum.","Entreguei o documento à Vossa Senhoria.","Refiro-me à decisão proferida ontem.","Ele começou à trabalhar cedo.","Estou disposto à colaborar."],c:2,e:"'Referir-se' pede 'a' e 'decisão' aceita artigo 'a': a + a = à. Não há crase antes de verbo, de pronome de tratamento ou de palavra masculina."},
+{t:"Crase",q:"Assinale a alternativa correta quanto ao uso da crase.",o:["Ele foi à Brasília.","Ele voltou da Bahia e foi à Roma.","Ele foi à Bahia.","Ele chegou à casa do juiz.","Ele chegou à pé."],c:2,e:"Antes de 'Bahia' há artigo ('a Bahia'): 'foi à Bahia'. 'Brasília' e 'Roma' não admitem artigo, então 'foi a Brasília', 'foi a Roma'. 'Chegou a casa' (casa sem adjunto, sem crase)."},
+{t:"Crase",q:"Assinale a alternativa em que a crase é facultativa.",o:["Fui à escola.","Dirigi-me à minha colega.","Vou a Roma.","Estou diante da ré.","Chegou às duas horas."],c:1,e:"Antes de pronome possessivo feminino no singular, a crase é facultativa: 'Dirigi-me à minha colega' ou 'a minha colega'."},
+{t:"Pontuação",q:"Assinale a alternativa em que a vírgula está empregada corretamente.",o:["O juiz, decidiu o caso.","O juiz decidiu, o caso.","O réu, que estava ausente, foi intimado.","O réu que estava ausente, foi intimado.","O réu, foi intimado."],c:2,e:"A oração subordinada adjetiva explicativa ('que estava ausente') vem entre vírgulas. Não se separa sujeito do verbo por vírgula isolada."},
+{t:"Pontuação",q:"Em qual alternativa a vírgula foi empregada de acordo com a norma-padrão?",o:["Os candidatos aprovados, receberão a convocação.","Os candidatos, aprovados receberão a convocação.","Os candidatos aprovados receberão a convocação.","Os candidatos aprovados receberão, a convocação.","Os candidatos, receberão a convocação aprovados."],c:2,e:"Não se separa sujeito de predicado nem verbo de complemento com vírgula. A frase correta não tem vírgulas."},
+{t:"Pontuação",q:"Assinale a alternativa em que a vírgula isola corretamente um aposto.",o:["Machado de Assis, escritor brasileiro, nasceu no Rio.","Machado de Assis escritor brasileiro, nasceu
